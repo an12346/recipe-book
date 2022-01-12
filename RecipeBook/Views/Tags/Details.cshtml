@@ -1,0 +1,25 @@
+@model RecipeBook.Models.Tag
+
+<h2>Tag Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)</h3>
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This tag is not being worked on by any recipes</p>
+}
+else
+{
+  <h4>Recipes with  this tag :</h4>
+  <ul>
+  @foreach(var join in Model.JoinEntities)
+  {
+    <li>@join.Recipe.Name</li>
+  }
+  </ul>
+}
+
+<p>@Html.ActionLink("Back to list", "Index")</p>
+<p>@Html.ActionLink("Edit Tag", "Edit", new { id = Model.TagId })</p>
+<p>@Html.ActionLink("Delete Tag", "Delete", new { id = Model.TagId })</p> 
+<p>@Html.ActionLink("Add a Recipe", "AddRecipe", new { id = Model.TagId })</p>

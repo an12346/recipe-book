@@ -1,0 +1,30 @@
+@model RecipeBook.Models.Recipe;
+
+<h2>Recipe Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+<h3>@Html.DisplayNameFor(model => model.Ingredients): @Html.DisplayFor(model => model.Ingredients)</h3>
+<h3>@Html.DisplayNameFor(model => model.Instructions): @Html.DisplayFor(model => model.Instructions)</h3>
+
+
+
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This Recipe does not contain any Tags</p>
+}
+else
+{
+  <h4>Tags the recipe contains:</h4>
+  <ul>
+  @foreach(var join in Model.JoinEntities)
+  {
+    <li>@join.Tag.Description</li>
+  }
+  </ul>
+}
+
+<p>@Html.ActionLink("Edit Recipe", "Edit", new { id = Model.RecipeId })</p>
+<p>@Html.ActionLink("Back to recipes", "Index")</p>
+<p>@Html.ActionLink("Delete Recipe", "Delete", new { id = Model.RecipeId })</p>
+<h4>@Html.ActionLink("Add a tag", "AddTag", new { id = Model.RecipeId })</h4>

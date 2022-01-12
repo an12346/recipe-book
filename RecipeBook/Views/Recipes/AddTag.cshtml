@@ -1,0 +1,13 @@
+@model RecipeBook.Models.Recipe
+<h1>Add a tag to this recipe: @Html.DisplayFor(model => model.Name)</h1>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.RecipeId)
+  @Html.Label("Select a tag")
+  @Html.DropDownList("TagId")
+
+  <input type="submit" value="Save"/>
+}
+
+<h4>@Html.ActionLink("Back to recipes", "Index")</h4>
